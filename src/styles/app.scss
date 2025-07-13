@@ -23,7 +23,28 @@
             @include styling.rounded;
 
             padding: 10px;
-            overflow: hidden
+            overflow: auto;
+
+            .heading {
+                text-align: center;
+            }
+
+            p {
+                text-align: justify;
+                margin: 10px 0;
+            }
+
+            table {
+
+                th,
+                td {
+                    text-align: center
+                }
+            }
+
+            .imgur-embed-container {
+                @include layout.flex-center(true);
+            }
         }
     }
 

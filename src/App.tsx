@@ -1,9 +1,10 @@
-import { Page, PageBody, PageFooter, PageHeader, PageMain } from '@syren-dev-tech/confects/containers';
 import './styles/app.scss';
-import { Divider, Heading } from '@syren-dev-tech/confects/decorations';
-import { uniqueKey } from '@syren-dev-tech/confects/helpers';
 import { BrandButton } from '@syren-dev-tech/confects/buttons';
+import { Divider, Heading } from '@syren-dev-tech/confects/decorations';
+import { Page, PageBody, PageFooter, PageHeader, PageMain } from '@syren-dev-tech/confects/containers';
+import { uniqueKey } from '@syren-dev-tech/confects/helpers';
 import { useEffect, useState } from 'react';
+import { themes } from '@syren-dev-tech/confetti/themes';
 
 interface ICost {
     days: number | number[]
@@ -30,22 +31,36 @@ export default function App() {
     const [prices, setPrices] = useState<IPrice[]>([]);
 
     useEffect(() => {
+        themes.init();
+    }, []);
+
+    useEffect(() => {
+        // Get base URL from vite config
+        const baseUrl = import.meta.env.BASE_URL || '/hooba/';
         // Fetch prices from the API
-        fetch('/prices.json')
+        fetch(baseUrl + '/prices.json')
             .then(response => response.json())
             .then(data => setPrices(data))
             .catch(error => console.error('Error fetching prices:', error));
     }, []);
 
-    return <Page>
-        <PageHeader>
+    return <Page
+        className={themes.getBasicStyling('body')}
+    >
+        <PageHeader
+            className={themes.getBasicStyling('primary')}
+        >
             <Heading>
                 {'Hooba\'s Lovely World'}
             </Heading>
         </PageHeader>
 
-        <PageBody>
-            <PageMain>
+        <PageBody
+            className={themes.getBasicStyling('body')}
+        >
+            <PageMain
+                className={themes.getBasicStyling('content')}
+            >
                 <Heading
                     level={2}
                 >
@@ -64,9 +79,13 @@ export default function App() {
                     My prices for custom Minecraft maps:
                 </p>
 
-                <table>
+                <table
+                    className={themes.getBasicStyling('secondary')}
+                >
                     <thead>
-                        <tr>
+                        <tr
+                            className={themes.getBasicStyling('primary')}
+                        >
                             <th>
                                 Size
                             </th>
@@ -143,7 +162,9 @@ export default function App() {
                 </p>
 
                 {/* Imgur link */}
-                <p>
+                <div
+                    className='imgur-embed-container'
+                >
                     <blockquote
                         className='imgur-embed-pub'
                         lang='en'
@@ -156,30 +177,28 @@ export default function App() {
                         </a>
                     </blockquote>
                     <script async src='//s.imgur.com/min/embed.js'></script>
-                </p>
-
-                <Divider />
-
-                <p>
-                    <Heading
-                        level={3}
-                    >
-                        Ordering:
-                    </Heading>
-
-                    <a
-                        href='https://discord.gg/TxvgCngzbW'
-                    >
-                        <BrandButton
-                            brand='discord'
-                        />
-                    </a>
-                </p>
+                </div>
             </PageMain>
         </PageBody>
 
-        <PageFooter>
+        <PageFooter
+            className={themes.getBasicStyling('primary')}
+        >
+            <Heading
+                level={3}
+            >
+                Ordering:
+            </Heading>
 
+            <a
+                href='https://discord.gg/TxvgCngzbW'
+                target='_blank'
+                rel='noopener noreferrer'
+            >
+                <BrandButton
+                    brand='discord'
+                />
+            </a>
         </PageFooter>
     </Page>;
 }
