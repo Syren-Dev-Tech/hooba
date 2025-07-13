@@ -1,0 +1,35 @@
+@use '~layout' as layout;
+@use '~styling' as styling;
+
+.page {
+    @include layout.flex(false, true);
+    @include layout.fullsize;
+
+    .page-header {
+        @include layout.flex-between(true);
+
+        padding: 5px 10px;
+    }
+
+    .page-body {
+        @include layout.flex(false, true);
+        @include layout.fullsize(40px);
+
+        padding: 20px;
+
+        .page-main {
+            @include layout.flex(false, true);
+            @include layout.fullsize(20px, 20px);
+            @include styling.rounded;
+
+            padding: 10px;
+            overflow: hidden
+        }
+    }
+
+    .page-footer {
+        @include layout.flex-between(true);
+
+        padding: 5px 10px;
+    }
+}
