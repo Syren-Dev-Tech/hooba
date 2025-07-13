@@ -1,10 +1,10 @@
 import './styles/app.scss';
 import { BrandButton } from '@syren-dev-tech/confects/buttons';
-import { Divider, Heading } from '@syren-dev-tech/confects/decorations';
+import { Heading } from '@syren-dev-tech/confects/decorations';
 import { Page, PageBody, PageFooter, PageHeader, PageMain } from '@syren-dev-tech/confects/containers';
+import { themes } from '@syren-dev-tech/confetti/themes';
 import { uniqueKey } from '@syren-dev-tech/confects/helpers';
 import { useEffect, useState } from 'react';
-import { themes } from '@syren-dev-tech/confetti/themes';
 
 interface ICost {
     days: number | number[]
@@ -147,11 +147,11 @@ export default function App() {
 
                 <p>
                     Disclaimer: Please communicate and ask questions beforehand.
-                    I love to make Minecraft maps and I love geography, and I want to make sure you love the maps as much as I do by the time I'm done.
+                    {'I love to make Minecraft maps and I love geography, and I want to make sure you love the maps as much as I do by the time I\'m done.'}
                     Help me help you!
                 </p>
                 <p>
-                    Please don't ask for updates frequently.
+                    {'Please don\'t ask for updates frequently.'}
                     I assure you I am working on your map!
                     But like all artists, I need space to work.
                     I will let you know when there has been significant progress.
@@ -161,7 +161,6 @@ export default function App() {
                     Here is my portfolio:
                 </p>
 
-                {/* Imgur link */}
                 <div
                     className='imgur-embed-container'
                 >
